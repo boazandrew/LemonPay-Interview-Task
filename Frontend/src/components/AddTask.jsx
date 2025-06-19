@@ -22,14 +22,14 @@ const AddTask = ({ onClose, onTaskAdded, initialData }) => {
     try {
       if (initialData && initialData._id) {
         await axios.put(
-          `http://localhost:4000/api/todo/${initialData._id}`,
+          `${import.meta.env.VITE_API_URL}/api/todo/${initialData._id}`,
           { task, description, dueDate },
           { headers: { Authorization: `Bearer ${token}` } }
         );
       } else {
         
         await axios.post(
-          "http://localhost:4000/api/todo",
+          `${import.meta.env.VITE_API_URL}/api/todo`,
           { task, description, dueDate },
           { headers: { Authorization: `Bearer ${token}` } }
         );
