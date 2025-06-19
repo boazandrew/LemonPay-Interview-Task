@@ -37,7 +37,7 @@ const AddTask = ({ onClose, onTaskAdded, initialData }) => {
       onTaskAdded(); 
       onClose(); 
     } catch (err) {
-      console.error("Failed to save task:", err);
+      console.error("Failed to save task:", err.response?.data || err.message);
     }
   };
 

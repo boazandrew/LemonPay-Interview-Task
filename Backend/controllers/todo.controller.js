@@ -2,18 +2,22 @@ const Todo = require("../models/todo.model");
 
 exports.createTodo = async (req, res) => {
   const { task, description, dueDate } = req.body;
+  console.log("CREATE TODO:", { task, description, dueDate, user: req.user });
+
   try {
     const todo = await Todo.create({
       task,
       description,
       dueDate,
-      userId: req.user.userId,
+      userId: req.user?.userId, 
     });
     res.status(201).json(todo);
   } catch (err) {
+    console.error("Error in createTodo:", err);
     res.status(500).json({ error: err.message });
   }
 };
+
 
 exports.getTodo = async (req, res) => {
   try {
