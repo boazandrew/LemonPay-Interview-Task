@@ -18,7 +18,7 @@ const Dashboard = () => {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/todo", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/todo`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTasks(res.data);
@@ -35,7 +35,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/todo/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/todo/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchTasks();
